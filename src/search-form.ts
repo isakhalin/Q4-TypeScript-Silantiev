@@ -1,6 +1,17 @@
 import { renderBlock } from './lib.js'
 
+const convertDate = (date: Date): string => {
+  const convertedDate = date.toLocaleDateString().split('.')
+  return convertedDate[2] + "-" + convertedDate[1] + "-" + convertedDate[0];
+}
+
 export function renderSearchFormBlock () {
+  const date = new Date();
+  const currentDate = convertDate(date);
+  const outDate = convertDate(new Date(date.getTime() + (1000 * 60 * 60 * 24 * 2)));
+  const nextMonth = date.getMonth() + 2
+  const lastDayInNextMonth = convertDate(new Date(date.getFullYear(), nextMonth, 0));
+
   renderBlock(
     'search-form-block',
     `
@@ -20,11 +31,11 @@ export function renderSearchFormBlock () {
         <div class="row">
           <div>
             <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value="2021-05-11" min="2021-05-11" max="2021-06-30" name="checkin" />
+            <input id="check-in-date" type="date" value=${currentDate} min=${currentDate} max=${lastDayInNextMonth} name="checkin" />
           </div>
           <div>
             <label for="check-out-date">Дата выезда</label>
-            <input id="check-out-date" type="date" value="2021-05-13" min="2021-05-11" max="2021-06-30" name="checkout" />
+            <input id="check-out-date" type="date" value=${outDate} min=${currentDate} max=${lastDayInNextMonth} name="checkout" />
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
