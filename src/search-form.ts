@@ -1,11 +1,31 @@
-import { renderBlock } from './lib.js'
+import {renderBlock} from './lib.js'
+import {SearchFormData} from "./interfeces";
+import {renderSearchResult} from './helpers.js';
 
 const convertDate = (date: Date): string => {
   const convertedDate = date.toLocaleDateString().split('.')
   return convertedDate[2] + "-" + convertedDate[1] + "-" + convertedDate[0];
 }
 
-export function renderSearchFormBlock () {
+// const searchBtn = document.getElementById('search-button')
+// searchBtn.onclick = () => {
+//   renderSearchResult(formHandler())
+// }
+
+function formHandler(): SearchFormData {
+  const inputInDate = document.getElementById('check-in-date') as HTMLInputElement;
+  const inputOutDate= document.getElementById('check-out-date') as HTMLInputElement;
+  const inputPrice= document.getElementById('max-price') as HTMLInputElement;
+
+  return {
+    checkInDate: inputInDate.value,
+    checkOutDate: inputOutDate.value,
+    price: +inputPrice.value
+  }
+}
+
+
+export function renderSearchFormBlock() {
   const date = new Date();
   const currentDate = convertDate(date);
   const outDate = convertDate(new Date(date.getTime() + (1000 * 60 * 60 * 24 * 2)));
@@ -42,11 +62,16 @@ export function renderSearchFormBlock () {
             <input id="max-price" type="text" value="" name="price" class="max-price" />
           </div>
           <div>
-            <div><button>Найти</button></div>
+            <div><button id="search-button">Найти</button></div>
           </div>
         </div>
       </fieldset>
     </form>
     `
   )
+  const searchBtn = document.getElementById('search-button')
+  searchBtn.onclick = (event : Event) => {
+    event.preventDefault()
+    renderSearchResult(formHandler())
+  }
 }
