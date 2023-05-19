@@ -1,0 +1,22 @@
+{
+  "name": "q4-typescript-silantiev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isakhalin/Q4-TypeScript-Silantiev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isakhalin/Q4-TypeScript-Silantiev/issues"
+  },
+  "homepage": "https://github.com/isakhalin/Q4-TypeScript-Silantiev#readme",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
