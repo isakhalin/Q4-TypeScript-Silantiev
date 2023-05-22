@@ -1,0 +1,34 @@
+для файла package.json
+--------------------------
+
+rd -r public\scripts 2>null     - удаляет каталог scripts и запускает команду tsc для сборки с конфигом по умолчанию tsconfig.json
+rd -r public\scripts 2>null & tsc -p tsconfig-dev.json     - то же самое, но ещё используем отдельный конфиг tsconfig-dev.json
+
+
+для файла tsconfig.json
+--------------------------
+Файл конфигурации для TS
+{
+  "compilerOptions": {          // Опции для компиляции(транспиляции)
+    "outDir": "public/scripts", // Папка в которую будут складываться файлы
+    "target": "ES2015",         // В какую версию ES компилировать
+    "module": "ES2015",         // Использовать модульный импорт
+    "moduleResolution": "Node"  // Будем использовать ноду для запуска
+  },
+  "files": [
+    "src/index.ts"              // Исходная точка, что собирать
+  ]
+}
+
+
+для файла tsconfig-dev.json
+--------------------------
+Файл конфигурации для TS в режиме разработки
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "watch": true,            // позволяет следить за изменениями и не прерывать поток и при сохранении обновлять
+    "inlineSourceMap": true,  // смотрит за файлом index.ts (т.е. изначальным src)
+    "inlineSources": true
+  }
+}
