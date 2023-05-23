@@ -1,28 +1,14 @@
-class Book {
-  name = '';
-  genre = '';
-  pageAmount = 0;
+import { renderSearchFormBlock } from './search-form.js';
+import { renderSearchStubBlock } from './search-results.js';
+import { renderUserBlock } from './user.js';
+import { renderToast } from './lib.js';
 
-  constructor(name: string, genre: string, pageAmount: number) {
-    this.name = name
-    this.genre = genre
-    this.pageAmount = pageAmount
-  }
-}
-
-const books: Book[] = [
-  new Book('Harry Potter', 'fantasy', 980),
-  new Book('LOTR', 'fantasy', 1001),
-  new Book('BOOK2', 'lifestyle', 500),
-  new Book('GoT', 'fantasy', 999)
-]
-
-function findSuitableBook(genre: string, pagesLimit: number, multipleRecommendations: boolean = true): Book | Book[] {
-  const findAlgorithm = (book: Book) => {
-    return book.genre === genre && book.pageAmount <= pagesLimit
-  }
-
-  return multipleRecommendations ? books.filter(findAlgorithm) : books.find(findAlgorithm);
-}
-
-console.log(findSuitableBook('fantasy', 1000));
+window.addEventListener('DOMContentLoaded', () => {
+  renderUserBlock('John Doe', 'someLink', 0)
+  renderSearchFormBlock(432434424, 432534424)
+  renderSearchStubBlock()
+  renderToast(
+      {text: 'Это пример уведомления. Используйте его при необходимости', type: 'success'},
+      {name: 'Понял', handler: () => {console.log('Уведомление закрыто')}}
+  )
+})
