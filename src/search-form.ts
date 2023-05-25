@@ -13,7 +13,12 @@ let currentDateLocale = currentDate.toLocaleDateString('en-ca');
 // Следующий день за текущим
 let nextDay = new Date(currentYear, currentMonth, currentDay + 1).toLocaleDateString('en-ca');
 
-const getLastDayOfNextMonth = (year, month) => {
+interface IGetLastDayOfNextMonth {
+  year: number;
+  month: number;
+}
+
+const getLastDayOfNextMonth = ({year, month}: IGetLastDayOfNextMonth ) => {
   let nextMonth = month + 2;
   if (nextMonth > 11) {
     return new Date(year + 1, nextMonth - 12, 0).toLocaleDateString('en-ca');
@@ -42,11 +47,11 @@ export function renderSearchFormBlock(arrivalDate, departDate) {
         <div class="row">
           <div>
             <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value="${nextDay}" min="${currentDateLocale}" max="${getLastDayOfNextMonth(currentYear, currentMonth)}" name="checkin" />
+            <input id="check-in-date" type="date" value="${nextDay}" min="${currentDateLocale}" max="${getLastDayOfNextMonth({year: currentYear, month: currentMonth})}" name="checkin" />
           </div>
           <div>
             <label for="check-out-date">Дата выезда</label>
-            <input id="check-out-date" type="date" value="${nextDay}" min="${currentDateLocale}" max="${getLastDayOfNextMonth(currentYear, currentMonth)}" name="checkout" />
+            <input id="check-out-date" type="date" value="${nextDay}" min="${currentDateLocale}" max="${getLastDayOfNextMonth({year: currentYear, month: currentMonth})}" name="checkout" />
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
