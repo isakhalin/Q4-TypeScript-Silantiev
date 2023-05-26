@@ -3,10 +3,10 @@ import {renderBlock} from './lib.js'
 // console.log(new Date().toISOString().slice(0,10));
 
 // Текущая дата
-let currentDate = new Date();
-let currentYear = currentDate.getFullYear();
-let currentMonth = currentDate.getMonth();
-let currentDay = currentDate.getDate();
+const currentDate: Date = new Date();
+const currentYear = currentDate.getFullYear();
+const currentMonth = currentDate.getMonth();
+const currentDay = currentDate.getDate();
 
 let currentDateLocale = currentDate.toLocaleDateString('en-ca');
 

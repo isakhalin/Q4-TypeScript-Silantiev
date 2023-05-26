@@ -3,17 +3,17 @@ export function renderBlock(elementId: string, html: string): void {
   element.innerHTML = html;
 }
 
-interface IMessage {
+type MessageType = {
   text: string;
   type: string;
 }
 
-interface IAction {
-  name: string;
-  handler: () => void
+type ActionType = {
+   name: string;
+   handler: () => void;
 }
 
-export function renderToast(message: IMessage, action: IAction) {
+export function renderToast(message: MessageType, action: ActionType) {
   let messageText = ''
 
   if (message != null) {

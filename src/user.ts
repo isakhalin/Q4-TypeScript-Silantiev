@@ -7,9 +7,10 @@ interface IRenderUserBlock {
 }
 
 export function renderUserBlock ({userName, avatarLink, favoriteItemsAmount}: IRenderUserBlock): void {
-  const favoritesCaption = favoriteItemsAmount ? favoriteItemsAmount : 'ничего нет';
-  const hasFavoriteItems = favoriteItemsAmount > 0;
-
+  // const favoritesCaption = favoriteItemsAmount ? favoriteItemsAmount : 'ничего нет';
+  // const hasFavoriteItems = favoriteItemsAmount > 0;
+  const items: number | string = Boolean(favoriteItemsAmount) ? favoriteItemsAmount : 'ничего нет';
+  
   renderBlock(
     'user-block',
     `
@@ -18,7 +19,7 @@ export function renderUserBlock ({userName, avatarLink, favoriteItemsAmount}: IR
       <div class="info">
           <p class="name">${userName}</p>
           <p class="fav">
-            <i class="heart-icon${hasFavoriteItems ? ' active' : ''}"></i>${favoritesCaption}
+            <i class="heart-icon${Boolean(favoriteItemsAmount) ? ' active' : ''}"></i>${items}
           </p>
       </div>
     </div>
